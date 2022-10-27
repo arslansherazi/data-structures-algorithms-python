@@ -10,4 +10,5 @@
 ### Sorting Algorithms
 ### Greedy Algorithms
 ### Dynamic Programming
+### Backtracking
 ### Analysis of Algorithms
