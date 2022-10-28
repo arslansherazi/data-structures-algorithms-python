@@ -5,6 +5,7 @@
 ### Linked List
 ### Binary Tree
 ### Binary Search Tree (BST)
+### Heap
 ### Graph
 ### Hashing
 
