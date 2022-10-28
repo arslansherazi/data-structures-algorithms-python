@@ -1,4 +1,5 @@
 # Data Structures and Algorithms
+## Data Structures
 ### Stack
 ### Queue
 ### Linked List
@@ -6,9 +7,12 @@
 ### Binary Search Tree (BST)
 ### Graph
 ### Hashing
+
+## Algorithms
 ### Searching Algorithms
 ### Sorting Algorithms
 ### Greedy Algorithms
 ### Dynamic Programming
 ### Backtracking
+### Recursion
 ### Analysis of Algorithms
