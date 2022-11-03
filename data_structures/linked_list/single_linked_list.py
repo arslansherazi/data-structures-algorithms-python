@@ -29,11 +29,14 @@ class LinkedList:
         self.head = new_node
 
     def append(self, data):
-        temp_node = self.head
-        while temp_node.next:
-            temp_node = temp_node.next
         new_node = Node(data)
-        temp_node.next = new_node
+        if not self.head:
+            self.head = new_node
+        else:
+            temp_node = self.head
+            while temp_node.next:
+                temp_node = temp_node.next
+            temp_node.next = new_node
 
     def delete(self, data):
         prev_node = next_node = self.head
