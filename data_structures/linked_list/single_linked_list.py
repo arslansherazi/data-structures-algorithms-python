@@ -69,6 +69,9 @@ class LinkedList:
             print('Data is not found')
 
     def display(self):
+        if not self.head:
+            print('No data to display')
+            return
         temp_node = self.head
         while temp_node:
             print(temp_node.data, end='\t')
