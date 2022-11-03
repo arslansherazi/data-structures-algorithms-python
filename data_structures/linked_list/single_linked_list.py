@@ -8,7 +8,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def insert(self, prev_data, new_data):
+    def insert(self, prev_data, data):
         temp_node = self.head
         prev_node = None
         while temp_node:
@@ -17,22 +17,22 @@ class LinkedList:
                 break
             temp_node = temp_node.next
         if prev_node:
-            new_node = Node(new_data)
+            new_node = Node(data)
             new_node.next = prev_node.next
             prev_node.next = new_node
         else:
             print('Data not found')
 
-    def push(self, new_data):
-        new_node = Node(new_data)
+    def push(self, data):
+        new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
 
-    def append(self, new_data):
+    def append(self, data):
         temp_node = self.head
         while temp_node.next:
             temp_node = temp_node.next
-        new_node = Node(new_data)
+        new_node = Node(data)
         temp_node.next = new_node
 
     def delete(self, data):
