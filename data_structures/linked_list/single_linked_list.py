@@ -21,7 +21,7 @@ class LinkedList:
             new_node.next = prev_node.next
             prev_node.next = new_node
         else:
-            print('Data not found')
+            print('\nData not found')
 
     def push(self, data):
         new_node = Node(data)
@@ -51,7 +51,7 @@ class LinkedList:
             prev_node.next = temp_node.next
             temp_node.next = None
         else:
-            print('Data not found')
+            print('\nData not found')
 
     def search(self, data):
         index = 0
@@ -64,19 +64,29 @@ class LinkedList:
             temp_node = temp_node.next
             index += 1
         if data_found:
-            print(f'Data is found at index {index}')
+            print(f'\nData is found at index {index}')
         else:
-            print('Data is not found')
+            print('\nData is not found')
 
     def display(self):
         if not self.head:
-            print('No data to display')
+            print('\nNo data to display')
             return
         temp_node = self.head
         while temp_node:
             print(temp_node.data, end='\t')
             temp_node = temp_node.next
         print()
+
+    def reverse(self):
+        current = self.head
+        prev = None
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.head = prev
 
 
 if __name__ == '__main__':
@@ -110,3 +120,6 @@ if __name__ == '__main__':
     linked_list.display()
 
     linked_list.search(89)
+
+    linked_list.reverse()
+    linked_list.display()
