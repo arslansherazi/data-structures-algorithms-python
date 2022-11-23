@@ -10,19 +10,21 @@ class DoubleLinkedList:
         self.head = None
 
     def insert(self, prev_data, data):
-        temp_node = self.head
-        new_node = None
-        while temp_node:
-            if temp_node.data == prev_data:
-                new_node = Node(data)
-                new_node.next = temp_node.next
-                new_node.prev = temp_node
-                temp_node.next.prev = new_node
-                temp_node.next = new_node
-                break
-            temp_node = temp_node.next
-        if not new_node:
-            print('Data not found')
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            temp_node = self.head
+            while temp_node:
+                if temp_node.data == prev_data:
+                    new_node.next = temp_node.next
+                    new_node.prev = temp_node
+                    temp_node.next.prev = new_node
+                    temp_node.next = new_node
+                    break
+                temp_node = temp_node.next
+            if not new_node:
+                print('Data not found')
 
     def push(self, data):
         new_node = Node(data)

@@ -9,19 +9,22 @@ class LinkedList:
         self.head = None
 
     def insert(self, prev_data, data):
-        temp_node = self.head
-        prev_node = None
-        while temp_node:
-            if temp_node.data == prev_data:
-                prev_node = temp_node
-                break
-            temp_node = temp_node.next
-        if prev_node:
-            new_node = Node(data)
-            new_node.next = prev_node.next
-            prev_node.next = new_node
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
         else:
-            print('\nData not found')
+            temp_node = self.head
+            prev_node = None
+            while temp_node:
+                if temp_node.data == prev_data:
+                    prev_node = temp_node
+                    break
+                temp_node = temp_node.next
+            if prev_node:
+                new_node.next = prev_node.next
+                prev_node.next = new_node
+            else:
+                print('\nData not found')
 
     def push(self, data):
         new_node = Node(data)
