@@ -16,4 +16,9 @@
 ### Dynamic Programming
 ### Backtracking
 ### Recursion
-### Analysis of Algorithms
+## Analysis of Algorithms
+### Time Complexity
+- #### Best Case
+-  #### Average Case
+- #### Worst Case
+### Space Complexity
