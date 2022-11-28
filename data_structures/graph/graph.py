@@ -1,29 +1,88 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+
 class Graph(object):
     def __init__(self):
-        self.vertices = []
-        self.edges = []
+        self.graph = {}
 
     def add_vertex(self, vertex):
-        pass
+        if vertex not in self.graph:
+            self.graph[vertex] = []
+        else:
+            print(f'Vertex {vertex} is already present')
 
-    def add_edge(self, staring_vertex, ending_vertex):
-        pass
+    def add_edge(self, starting_vertex, ending_vertex):
+        if self.verify_vertices(vertices=[starting_vertex, ending_vertex]):
+            staring_vertex_edges = self.graph.get(starting_vertex, [])
+            if ending_vertex in staring_vertex_edges:
+                print(f'Edge from {starting_vertex} to {ending_vertex} is already present')
+            else:
+                staring_vertex_edges.append(ending_vertex)
+                self.graph[starting_vertex] = staring_vertex_edges
 
-    def display_paths(self, staring_vertex, ending_vertex):
-        pass
-
-    def delete_edge(self, staring_vertex, ending_vertex):
-        pass
+    def delete_edge(self, starting_vertex, ending_vertex):
+        if self.verify_vertices(vertices=[starting_vertex, ending_vertex]):
+            staring_vertex_edges = self.graph.get(starting_vertex, [])
+            if ending_vertex not in staring_vertex_edges:
+                print(f'Edge from {starting_vertex} to {ending_vertex} is not present')
+            else:
+                staring_vertex_edges.remove(ending_vertex)
+                self.graph[starting_vertex] = staring_vertex_edges
 
     def delete_vertex(self, vertex):
-        pass
+        if vertex not in self.graph:
+            print(f'Vertex {vertex} is not present in graph')
+        else:
+            del self.graph[vertex]
 
-    def depth_first_traversal(self):
-        pass
+    def verify_vertices(self, vertices: list) -> bool:
+        for vertex in vertices:
+            if vertex not in self.graph:
+                print(f'Vertex {vertex} is not present in graph')
+                return False
+        return True
 
-    def breadth_first_traversal(self):
-        pass
+    def display(self):
+        graph = nx.Graph()
+        graph_edges = []
+        for vertex, edges in self.graph.items():
+            for edge in edges:
+                graph_edges.append([vertex, edge])
+        graph.add_edges_from(graph_edges)
+        nx.draw_networkx(graph)
+        plt.show()
+        plt.savefig("mygraph.png")
 
 
 if __name__ == '__main__':
-    pass
+    graph = Graph()
+
+    graph.add_vertex('a')
+    graph.add_vertex('b')
+    graph.add_vertex('c')
+    graph.add_vertex('d')
+    graph.add_vertex('e')
+    graph.add_vertex('f')
+    graph.add_vertex('g')
+    graph.add_vertex('h')
+
+    graph.add_edge(starting_vertex='a', ending_vertex='c')
+    graph.add_edge(starting_vertex='c', ending_vertex='h')
+    graph.add_edge(starting_vertex='d', ending_vertex='e')
+    graph.add_edge(starting_vertex='b', ending_vertex='a')
+    graph.add_edge(starting_vertex='f', ending_vertex='f')
+    graph.add_edge(starting_vertex='e', ending_vertex='c')
+    graph.add_edge(starting_vertex='d', ending_vertex='g')
+    graph.add_edge(starting_vertex='g', ending_vertex='a')
+    graph.add_edge(starting_vertex='f', ending_vertex='a')
+    graph.add_edge(starting_vertex='h', ending_vertex='b')
+
+    graph.display()
+
+    graph.delete_vertex('f')
+    graph.display()
+    graph.delete_vertex('z')
+
+    graph.delete_edge(starting_vertex='c', ending_vertex='h')
+    graph.display()
