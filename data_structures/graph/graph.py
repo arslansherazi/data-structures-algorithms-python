@@ -45,14 +45,18 @@ class Graph(object):
 
     def display(self):
         graph = nx.Graph()
-        graph_edges = []
-        for vertex, edges in self.graph.items():
-            for edge in edges:
-                graph_edges.append([vertex, edge])
+        graph_edges = self.get_adjacency_matrix()
         graph.add_edges_from(graph_edges)
         nx.draw_networkx(graph)
         plt.show()
         plt.savefig("mygraph.png")
+
+    def get_adjacency_matrix(self) -> list:
+        graph_edges = []
+        for vertex, edges in self.graph.items():
+            for edge in edges:
+                graph_edges.append([vertex, edge])
+        return graph_edges
 
 
 if __name__ == '__main__':
