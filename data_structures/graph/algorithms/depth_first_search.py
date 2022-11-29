@@ -6,17 +6,17 @@ class DepthFirstSearch(object):
     def __init__(self, _graph):
         self.graph = _graph
         self.stack = Stack()
-        self.visited_vertices = []
+        self.visited_vertices = set()
+        self.starting_vertex = list(self.graph.graph.keys())[0]
 
     def depth_first_search(self):
-        starting_vertex = list(self.graph.graph.keys())[0]
-        self.handle_visited_vertex(starting_vertex)
+        self.handle_visited_vertex(self.starting_vertex)
         _dfs = []
-        while starting_vertex:
-            adjacent_vertex = self.graph.graph.get(starting_vertex)[0]
+        while self.starting_vertex:
+            adjacent_vertex = self.graph.graph.get(self.starting_vertex)[0]
             if adjacent_vertex in self.visited_vertices:
                 unvisited_vertex_found = False
-                for _adjacent_vertex in self.graph.graph.get(starting_vertex):
+                for _adjacent_vertex in self.graph.graph.get(self.starting_vertex):
                     if _adjacent_vertex not in self.visited_vertices:
                         unvisited_vertex_found = True
                         adjacent_vertex = _adjacent_vertex
@@ -24,11 +24,11 @@ class DepthFirstSearch(object):
                         break
                 if not unvisited_vertex_found:
                     _dfs.append(self.stack.pop())
-                    starting_vertex = self.stack.peek()
+                    self.starting_vertex = self.stack.peek()
                     continue
             else:
                 self.handle_visited_vertex(adjacent_vertex)
-            starting_vertex = adjacent_vertex
+            self.starting_vertex = adjacent_vertex
         while True:
             if self.stack.is_empty():
                 break
@@ -38,12 +38,23 @@ class DepthFirstSearch(object):
 
     def handle_visited_vertex(self, vertex):
         self.stack.push(vertex)
-        self.visited_vertices.append(vertex)
+        self.visited_vertices.add(vertex)
+
+    def dfs(self, vertex=None):
+        """
+        Depth First search using Recursion
+        """
+        if not vertex:
+            vertex = self.starting_vertex
+        self.visited_vertices.add(vertex)
+        print(vertex, end='\t')
+        for adjacent_vertex in set(self.graph.graph.get(vertex)) - self.visited_vertices:
+            if adjacent_vertex not in self.visited_vertices:
+                self.dfs(adjacent_vertex)
 
 
 if __name__ == '__main__':
     graph = Graph()
-    dfs = DepthFirstSearch(graph)
 
     graph.add_vertex('S')
     graph.add_vertex('A')
@@ -58,4 +69,6 @@ if __name__ == '__main__':
     graph.add_edge(starting_vertex='D', ending_vertex='C')
     graph.add_edge(starting_vertex='C', ending_vertex='S')
 
+    dfs = DepthFirstSearch(graph)
     dfs.depth_first_search()
+    # dfs.dfs()
