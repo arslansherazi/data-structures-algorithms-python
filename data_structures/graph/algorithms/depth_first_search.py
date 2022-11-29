@@ -71,4 +71,6 @@ if __name__ == '__main__':
 
     dfs = DepthFirstSearch(graph)
     dfs.depth_first_search()
+
+    # dfs using recursion
     # dfs.dfs()
