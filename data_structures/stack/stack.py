@@ -4,7 +4,7 @@
 """
 
 
-class Stack:
+class Queue:
     def __init__(self):
         self.__top = -1
         self.size = 10
@@ -42,7 +42,7 @@ class Stack:
 
 
 if __name__ == '__main__':
-    stack = Stack()
+    stack = Queue()
     print(stack.pop())
 
     stack.push('Arslan')

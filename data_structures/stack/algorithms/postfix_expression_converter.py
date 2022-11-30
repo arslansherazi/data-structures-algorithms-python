@@ -1,4 +1,4 @@
-from data_structures.stack.stack import Stack
+from data_structures.stack.stack import Queue
 
 
 class PostfixExpressionEvaluator(object):
@@ -6,7 +6,7 @@ class PostfixExpressionEvaluator(object):
     45+7*2-   =======>   61
     """
     def __init__(self):
-        self.stack = Stack()
+        self.stack = Queue()
         self.operators = ['+', '-', '*', '/', '^']
 
     def evaluate_postfix_expression(self, expression):

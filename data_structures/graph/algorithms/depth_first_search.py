@@ -1,11 +1,11 @@
 from data_structures.graph.graph import Graph
-from data_structures.stack.stack import Stack
+from data_structures.stack.stack import Queue
 
 
 class DepthFirstSearch(object):
     def __init__(self, _graph):
         self.graph = _graph
-        self.stack = Stack()
+        self.stack = Queue()
         self.visited_vertices = set()
         self.starting_vertex = list(self.graph.graph.keys())[0]
 
