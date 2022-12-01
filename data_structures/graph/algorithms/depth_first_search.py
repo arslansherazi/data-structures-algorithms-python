@@ -7,16 +7,16 @@ class DepthFirstSearch(object):
         self.graph = _graph
         self.stack = Queue()
         self.visited_vertices = set()
-        self.starting_vertex = list(self.graph.graph.keys())[0]
+        self.starting_vertex = list(self.graph.weighted_graph.keys())[0]
 
     def depth_first_search(self):
         self.handle_visited_vertex(self.starting_vertex)
         while not self.stack.is_empty():
             next_vertex = self.stack.peek()
-            adjacent_vertex = self.graph.graph.get(next_vertex)[0]
+            adjacent_vertex = self.graph.weighted_graph.get(next_vertex)[0]
             if adjacent_vertex in self.visited_vertices:
                 unvisited_vertex_found = False
-                for _adjacent_vertex in self.graph.graph.get(next_vertex):
+                for _adjacent_vertex in self.graph.weighted_graph.get(next_vertex):
                     if _adjacent_vertex not in self.visited_vertices:
                         unvisited_vertex_found = True
                         adjacent_vertex = _adjacent_vertex
@@ -42,7 +42,7 @@ class DepthFirstSearch(object):
             vertex = self.starting_vertex
         self.visited_vertices.add(vertex)
         print(vertex, end='\t')
-        for adjacent_vertex in set(self.graph.graph.get(vertex)) - self.visited_vertices:
+        for adjacent_vertex in set(self.graph.weighted_graph.get(vertex)) - self.visited_vertices:
             if adjacent_vertex not in self.visited_vertices:
                 self.dfs(adjacent_vertex)
 

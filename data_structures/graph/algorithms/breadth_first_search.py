@@ -7,7 +7,7 @@ class BreadthFirstSearch(object):
         self.graph = _graph
         self.queue = Queue(size=10000)
         self.visited_vertices = set()
-        self.starting_vertex = list(self.graph.graph.keys())[0]
+        self.starting_vertex = list(self.graph.weighted_graph.keys())[0]
 
     def breadth_first_search(self):
         self.queue.enqueue(self.starting_vertex)
@@ -15,7 +15,7 @@ class BreadthFirstSearch(object):
             next_vertex = self.queue.dequeue()
             self.visited_vertices.add(next_vertex)
             print(next_vertex, end='\t')
-            for adjacent_vertex in self.graph.graph.get(next_vertex):
+            for adjacent_vertex in self.graph.weighted_graph.get(next_vertex):
                 if adjacent_vertex not in self.visited_vertices:
                     self.queue.enqueue(adjacent_vertex)
 
