@@ -2,7 +2,7 @@ class DijkstraShortestPath(object):
     def __init__(self, graph):
         self.graph = graph
 
-    def get_shortest_path(self) -> (str, int):
+    def get_shortest_path(self, source_vertex, dest_vertex) -> (str, int):
         pass
 
 
