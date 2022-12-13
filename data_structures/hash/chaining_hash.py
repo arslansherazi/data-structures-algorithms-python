@@ -26,18 +26,23 @@ class ChainingHash:
             self.__hash_table[hash_table_index] = [node]
 
     def update(self, key, value):
-        pass
+        node, hash_table_index, node_index = self.__get_node_data(key)
+        self.__hash_table[hash_table_index][node_index] = Node(key, value)
 
-    def delete(self, key, value):
-        pass
+    def delete(self, key):
+        node, hash_table_index, node_index = self.__get_node_data(key)
+        del self.__hash_table[hash_table_index][node_index]
 
     def get_value(self, key):
+        node, _, _ = self.__get_node_data(key)
+        return node.value
+
+    def __get_node_data(self, key):
         hash_table_index = self.__hash_function(key)
         hash_table_value = self.__hash_table[hash_table_index]
         if hash_table_value:
             node_index = self.search_key(hash_table_value, key)
-            if node_index or node_index == 0:
-                return hash_table_value[node_index].value
+            return hash_table_value[node_index], hash_table_index, node_index
         raise Exception(f'Key Error. {key} not found in hash')
 
     @staticmethod
@@ -73,4 +78,17 @@ if __name__ == '__main__':
 
     print()
     print(chaining_hash.get_value('name'))
-    print(chaining_hash.get_value('address2'))
+    # print(chaining_hash.get_value('address2'))
+
+    print()
+    chaining_hash.update('name', 'Syed Arslan Haider')
+
+    print()
+    chaining_hash.display()
+
+    print()
+    print(chaining_hash.get_value('name'))
+
+    chaining_hash.delete('company')
+    print()
+    chaining_hash.display()
