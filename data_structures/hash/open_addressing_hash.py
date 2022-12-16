@@ -5,23 +5,41 @@ class Node:
 
 
 class OpenAddressingHash:
-    def __init__(self):
-        self.__hash_table = []
+    def __init__(self, size):
+        self.__hash_table = [None for _ in range(size)]
+        self.__hash_value = len(self.__hash_table)
 
     def __hash_function(self, key):
-        pass
+        if isinstance(key, str):
+            key = hash(key)
+        hash_table_index = key % self.__hash_value
+        if self.__hash_table[hash_table_index]:
+            hash_table_index = self.__linear_probing(key)
+        return hash_table_index
 
-    def __linear_probing(self, key):
-        pass
+    def __linear_probing(self, current_index):
+        counter = 1
+        while True:
+            hash_table_index = (current_index + counter) % self.__hash_value
+            if not self.__hash_table[self.__hash_value]:
+                return hash_table_index
+            # if hash table index is greater than the hash table then add None from last index to the
+            # calculated hash index
+            if hash_table_index > self.__hash_value:
+                self.__hash_table.extend([None for i in range(self.__hash_value, hash_table_index)])
+                return hash_table_index
+            counter += 1
 
     def __quadratic_probing(self, key):
         pass
 
-    def __rehashing(self, key):
+    def __double_hashing(self, key):
         pass
 
     def insert(self, key, value):
-        pass
+        hash_table_index = self.__hash_function(key)
+        node = Node(key, value)
+        self.__hash_table[hash_table_index] = node
 
     def update(self, key, value):
         pass
