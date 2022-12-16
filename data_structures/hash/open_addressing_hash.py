@@ -14,20 +14,19 @@ class OpenAddressingHash:
             key = hash(key)
         hash_table_index = key % self.__hash_value
         if self.__hash_table[hash_table_index]:
-            hash_table_index = self.__linear_probing(key)
+            hash_table_index = self.__linear_probing(current_index=hash_table_index)
         return hash_table_index
 
     def __linear_probing(self, current_index):
         counter = 1
         while True:
             hash_table_index = (current_index + counter) % self.__hash_value
-            if not self.__hash_table[self.__hash_value]:
+            if not self.__hash_table[hash_table_index]:
                 return hash_table_index
-            # if hash table index is greater than the hash table then add None from last index to the
-            # calculated hash index
-            if hash_table_index > self.__hash_value:
-                self.__hash_table.extend([None for i in range(self.__hash_value, hash_table_index)])
-                return hash_table_index
+            # if no index is free then increase array size
+            if counter == len(self.__hash_table):
+                self.__hash_table.extend([None for i in range(self.__hash_value)])
+                self.__hash_value = len(self.__hash_table)
             counter += 1
 
     def __quadratic_probing(self, key):
@@ -62,3 +61,31 @@ class OpenAddressingHash:
             print(node.key, "  -->  ", node.value)
 
 
+if __name__ == '__main__':
+    open_addressing_hash = OpenAddressingHash(size=5)
+    open_addressing_hash.insert('name', 'Arslan Haider Sherazi')
+    open_addressing_hash.insert('designation', 'Software Engineer')
+    open_addressing_hash.insert('tech', 'python')
+    open_addressing_hash.insert('age', 27)
+    open_addressing_hash.insert('address', 'Lahore')
+    open_addressing_hash.insert('email', 'arslanhaider.dev@hotmail.com')
+    open_addressing_hash.insert('company', 'Folio3')
+
+    open_addressing_hash.display()
+
+    # print()
+    # print(open_addressing_hash.get_value('name'))
+    # # print(chaining_hash.get_value('address2'))
+    #
+    # print()
+    # open_addressing_hash.update('name', 'Syed Arslan Haider')
+    #
+    # print()
+    # open_addressing_hash.display()
+    #
+    # print()
+    # print(open_addressing_hash.get_value('name'))
+    #
+    # open_addressing_hash.delete('company')
+    # print()
+    # open_addressing_hash.display()
