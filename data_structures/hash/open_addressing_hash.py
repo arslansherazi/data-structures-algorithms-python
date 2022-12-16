@@ -55,4 +55,10 @@ class OpenAddressingHash:
         pass
 
     def display(self):
-        pass
+        for node in self.__hash_table:
+            if not node:
+                print(None)
+                continue
+            print(node.key, "  -->  ", node.value)
+
+
