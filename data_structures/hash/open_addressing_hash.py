@@ -77,7 +77,11 @@ class OpenAddressingHash:
         print('Key not found')
 
     def delete(self, key):
-        pass
+        _, hash_table_index = self.__get_node_data(key)
+        if hash_table_index:
+            self.__hash_table[hash_table_index] = None
+            return
+        print('Key not found')
 
     def get_value(self, key):
         node, _ = self.__get_node_data(key)
@@ -96,10 +100,6 @@ class OpenAddressingHash:
                 node = self.__hash_table[hash_table_index]
         return node, hash_table_index
 
-    @staticmethod
-    def search_key(hash_table_value: list, key) -> int:
-        pass
-
     def display(self):
         for node in self.__hash_table:
             if not node:
@@ -109,7 +109,7 @@ class OpenAddressingHash:
 
 
 if __name__ == '__main__':
-    open_addressing_hash = OpenAddressingHash(size=5, is_quadratic_probing=True)
+    open_addressing_hash = OpenAddressingHash(size=5, is_linear_probing=True)
 
     open_addressing_hash.insert('name', 'Arslan Haider Sherazi')
     open_addressing_hash.insert('designation', 'Software Engineer')
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
     print()
     print(open_addressing_hash.get_value('name'))
-    print(open_addressing_hash.get_value('address2'))
+    print(open_addressing_hash.get_value('address'))
 
 
     print()
@@ -132,9 +132,9 @@ if __name__ == '__main__':
     print()
     open_addressing_hash.display()
 
-    # print()
-    # print(open_addressing_hash.get_value('name'))
-    #
-    # open_addressing_hash.delete('company')
-    # print()
-    # open_addressing_hash.display()
+    print()
+    print(open_addressing_hash.get_value('name'))
+
+    open_addressing_hash.delete('company')
+    print()
+    open_addressing_hash.display()
