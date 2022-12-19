@@ -29,4 +29,3 @@ if __name__ == '__main__':
         print(f'{element} is present at index {index}')
     else:
         print(f'{element} does not exist in the data')
-
