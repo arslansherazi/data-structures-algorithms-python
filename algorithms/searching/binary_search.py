@@ -1,3 +1,6 @@
+""" Complexity --> O(logn)  """
+
+
 def binary_search(_data, _element):
     lower_bound = 0
     upper_bound = len(_data) - 1
