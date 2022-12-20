@@ -1,6 +1,8 @@
 """ Complexity --> O(logn)  """
+from algorithms.calculate_time import calculate_time
 
 
+@calculate_time
 def binary_search(_data, _element):
     lower_bound = 0
     upper_bound = len(_data) - 1
@@ -25,7 +27,7 @@ if __name__ == '__main__':
     data.sort()  # data array should be sorted for binary search
     element = -1
     index = binary_search(_data=data, _element=element)
-    if index > -1:
+    if index is not None:
         print(f'{element} is present at index {index}')
     else:
         print(f'{element} does not exist in the data')

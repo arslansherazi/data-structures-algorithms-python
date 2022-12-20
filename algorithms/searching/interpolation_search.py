@@ -1,6 +1,8 @@
 """ Complexity --> O(log(logn))  """
+from algorithms.calculate_time import calculate_time
 
 
+@calculate_time
 def interpolation_search(_data, _element):
     lower_bound = 0
     upper_bound = len(_data) - 1
