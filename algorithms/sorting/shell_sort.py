@@ -24,6 +24,6 @@ def shell_sort(_data):
 
 
 if __name__ == '__main__':
-    data = [20, 1, 13, 6, -8, 12, 90, -1, 94, 34, 89, 92, 45, 5, 9, 12, 0, 34]
+    data = [12, 34, 54, 2, 3, 9, 8]
     sorted_data = shell_sort(data)
     print(sorted_data)
