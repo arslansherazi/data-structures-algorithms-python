@@ -3,11 +3,14 @@
 ### Stack
 ### Queue
 ### Linked List
-### Binary Tree
-### Binary Search Tree (BST)
-### Heap
+## Tree
+- Binary Tree
+- Binary Search Tree (BST)
+- Heap
+- AVL tree
 ### Graph
 ### Hashing
+### Recursion
 
 ## Algorithms
 ### Searching Algorithms
@@ -15,7 +18,6 @@
 ### Greedy Algorithms
 ### Dynamic Programming
 ### Backtracking
-### Recursion
 ## Analysis of Algorithms
 ### Time Complexity
 - #### Best Case
