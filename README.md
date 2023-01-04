@@ -38,6 +38,12 @@ Divide the problem into smallest possible sub-problems and solve every sub-probl
 and merge all the sub-problems
 ~~~
 ### Backtracking
+~~~
+general algorithmic technique that considers searching every possible combination 
+in order to solve a computational problem and backtrack to find next combination
+if any combination fails to satisfy the constraints of the problem 
+at any point of time
+~~~
 ## Analysis of Algorithms
 ### Time Complexity
 - #### Best Case
