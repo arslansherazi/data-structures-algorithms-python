@@ -47,33 +47,36 @@ class WeightedGraph(object):
 
     def display(self):
         print(self.weighted_graph)
-        graph = nx.DiGraph()
-        graph_edges = self.get_adjacency_matrix()
+        _graph = nx.DiGraph()
+        graph_edges = self.get_graph_edges()
         for graph_edge in graph_edges:
-            graph.add_edge(graph_edge[0], graph_edge[1], weight=graph_edge[2])
+            _graph.add_edge(graph_edge[0], graph_edge[1], weight=graph_edge[2])
 
-        edge_labels = nx.get_edge_attributes(graph, "weight")
-        pos = nx.spring_layout(graph, seed=7)
+        edge_labels = nx.get_edge_attributes(_graph, "weight")
+        pos = nx.spring_layout(_graph, seed=7)
 
         # vertices
-        nx.draw_networkx_nodes(graph, pos, node_size=700, label="ciudades")
-        nx.draw_networkx_labels(graph, pos, font_size=20, font_family="sans-serif")
+        nx.draw_networkx_nodes(_graph, pos, node_size=700, label="ciudades")
+        nx.draw_networkx_labels(_graph, pos, font_size=20, font_family="sans-serif")
 
         # edges
         nx.draw_networkx_edges(
-            graph, pos, width=2, alpha=0.5, edge_color="green", arrowstyle='-|>'
+            _graph, pos, width=2, alpha=0.5, edge_color="green", arrowstyle='-|>'
         )
-        nx.draw_networkx_edge_labels(graph, pos, edge_labels)
+        nx.draw_networkx_edge_labels(_graph, pos, edge_labels)
 
         plt.show()
         plt.savefig("mygraph.png")
 
-    def get_adjacency_matrix(self) -> list:
+    def get_graph_edges(self) -> list:
         graph_edges = []
         for vertex, edges in self.weighted_graph.items():
             for edge in edges:
                 graph_edges.append([vertex, edge[0], edge[1]])
         return graph_edges
+
+    def get_adjacency_matrix(self) -> list:
+        pass
 
 
 if __name__ == '__main__':
