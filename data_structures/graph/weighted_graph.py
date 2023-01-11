@@ -2,9 +2,10 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 
-class WeightedGraph(object):
+class WeightedGraph:
     def __init__(self):
         self.weighted_graph = {}
+        self.graph_vertices_integer_map = {}
 
     def add_vertex(self, vertex):
         if vertex not in self.weighted_graph:
@@ -75,25 +76,32 @@ class WeightedGraph(object):
                 graph_edges.append([vertex, edge[0], edge[1]])
         return graph_edges
 
-    def get_adjacency_matrix(self) -> list:
-        graph_vertices = len(self.weighted_graph.keys())
-        graph_vertices_integer_map = {}
-
-        # integer map for no-integer vertices
+    def __generate_vertices_integer_map(self):
+        """
+        Map actual vertices names with integer names
+        """
         counter = 0
         for vertex in self.weighted_graph.keys():
-            graph_vertices_integer_map[vertex] = counter
+            self.graph_vertices_integer_map[vertex] = counter
             counter += 1
+
+    def get_vertices_integer_map(self):
+        return self.graph_vertices_integer_map
+
+    def get_adjacency_matrix(self) -> list:
+        graph_vertices = len(self.weighted_graph.keys())
 
         # initialize adjacency matrix
         adjacency_matrix = [[float('INF') for _ in range(graph_vertices)] for _ in range(graph_vertices)]
 
-        for vertex, integer_no in graph_vertices_integer_map.items():
+        self.__generate_vertices_integer_map()
+
+        for vertex, integer_no in self.graph_vertices_integer_map.items():
             adjacency_matrix[integer_no][integer_no] = 0  # self edge
             for edge in self.weighted_graph.get(vertex):
                 edge_vertex = edge[0]
                 edge_weight = edge[1]
-                edge_vertex_integer_no = graph_vertices_integer_map.get(edge_vertex)
+                edge_vertex_integer_no = self.graph_vertices_integer_map.get(edge_vertex)
                 adjacency_matrix[integer_no][edge_vertex_integer_no] = edge_weight
 
         return adjacency_matrix
