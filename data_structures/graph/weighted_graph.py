@@ -76,7 +76,24 @@ class WeightedGraph(object):
         return graph_edges
 
     def get_adjacency_matrix(self) -> list:
-        pass
+        graph_vertices = len(self.weighted_graph.keys())
+        graph_vertices_integer_map = {}
+        counter = 0
+        for vertex in self.weighted_graph.keys():
+            graph_vertices_integer_map[vertex] = counter
+            counter += 1
+
+        adjacency_matrix = [[float('INF') for _ in range(graph_vertices)] for _ in range(graph_vertices)]
+
+        for vertex, integer_no in graph_vertices_integer_map.items():
+            adjacency_matrix[integer_no][integer_no] = 0  # self edge
+            for edge in self.weighted_graph.get(vertex):
+                edge_vertex = edge[0]
+                edge_weight = edge[1]
+                edge_vertex_integer_no = graph_vertices_integer_map.get(edge_vertex)
+                adjacency_matrix[integer_no][edge_vertex_integer_no] = edge_weight
+
+        return adjacency_matrix
 
 
 if __name__ == '__main__':
