@@ -78,11 +78,14 @@ class WeightedGraph(object):
     def get_adjacency_matrix(self) -> list:
         graph_vertices = len(self.weighted_graph.keys())
         graph_vertices_integer_map = {}
+
+        # integer map for no-integer vertices
         counter = 0
         for vertex in self.weighted_graph.keys():
             graph_vertices_integer_map[vertex] = counter
             counter += 1
 
+        # initialize adjacency matrix
         adjacency_matrix = [[float('INF') for _ in range(graph_vertices)] for _ in range(graph_vertices)]
 
         for vertex, integer_no in graph_vertices_integer_map.items():
