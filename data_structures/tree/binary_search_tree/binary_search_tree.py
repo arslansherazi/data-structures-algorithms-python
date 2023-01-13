@@ -17,3 +17,6 @@ class BinarySearchTree:
 
     def search(self, data):
         pass
+
+    def traversal(self):
+        pass
