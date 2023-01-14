@@ -1,3 +1,6 @@
+from commons.helpers import display_tree
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -25,13 +28,46 @@ class BinarySearchTree:
 
         return node
 
-    def update(self, data):
-        pass
+    def delete(self, node, data):
+        # handle empty tree
+        if not self.__root:
+            print('Tree is empty')
+            return
 
-    def delete(self, data):
-        pass
+        if not root:
+            return
 
-    def search(self, node, data):
+        # find the node to be deleted
+        if data < node.data:
+            node.left_child = self.delete(node.left_child, data)
+        elif data > node.data:
+            node.right_child = self.delete(node.right_child, data)
+        else:
+            # delete the node has only one child or no child (leaf node)
+            if not node.left_child:
+                temp = node.right_child
+                node = None
+                return temp
+            if not node.right_child:
+                temp = node.left_child
+                node = None
+                return temp
+
+            # If the node has two children, place the inorder successor in position of the node to be deleted
+            temp = self.min_value_node(node.right)
+            root.key = temp.key
+            root.right = self.delete(root.right, temp.key)
+
+        return node
+
+    @staticmethod
+    def min_value_node(node):
+        current = node
+        while current.left:
+            current = current.left
+        return current
+
+    def search(self, node, data, return_node=False):
         # handle empty tree
         if not self.__root:
             print('Tree is empty')
@@ -39,6 +75,8 @@ class BinarySearchTree:
         if not node:
             return
         if node.data == data:
+            if return_node:
+                return node
             return self.__root.data
         if data < node.data:
             return self.search(node.left_child, data)
@@ -80,6 +118,9 @@ if __name__ == '__main__':
     bst.insert(root, 16)
     bst.insert(root, 17)
 
+    # display tree
+    display_tree(root)
+
     # tree traversal
     print('Inorder Traversal:')
     bst.inorder_traversal(root)
@@ -95,3 +136,6 @@ if __name__ == '__main__':
         print('\nData not exist in the tree')
     else:
         print('\nData is present in the tree')
+
+    # update
+
