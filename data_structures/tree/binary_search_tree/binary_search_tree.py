@@ -31,8 +31,19 @@ class BinarySearchTree:
     def delete(self, data):
         pass
 
-    def search(self, data):
-        pass
+    def search(self, node, data):
+        # handle empty tree
+        if not self.__root:
+            print('Tree is empty')
+            return
+        if not node:
+            return
+        if node.data == data:
+            return self.__root.data
+        if data < node.data:
+            return self.search(node.left_child, data)
+        else:
+            return self.search(node.right_child, data)
 
     def inorder_traversal(self, node):
         if node:
@@ -78,3 +89,9 @@ if __name__ == '__main__':
 
     print('\nPostorder Traversal:')
     bst.postorder_traversal(root)
+
+    # search data in tree
+    if not bst.search(root, data=15):
+        print('\nData not exist in the tree')
+    else:
+        print('\nData is present in the tree')
