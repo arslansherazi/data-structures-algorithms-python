@@ -42,26 +42,22 @@ class BinarySearchTree:
         else:
             # delete the node has only one child or no child (leaf node)
             if not node.left_child:
-                temp = node.right_child
-                node = None
-                return temp
+                return node.right_child
             if not node.right_child:
-                temp = node.left_child
-                node = None
-                return temp
+                return node.left_child
 
             # If the node has two children, place the inorder successor in position of the node to be deleted
-            temp = self.min_value_node(node.right)
-            root.key = temp.key
-            root.right = self.delete(root.right, temp.key)
+            temp = self.min_value_node(node.right_child)
+            node.data = temp.data
+            node.right_child = self.delete(node.right_child, temp.data)
 
         return node
 
     @staticmethod
     def min_value_node(node):
         current = node
-        while current.left:
-            current = current.left
+        while current.left_child:
+            current = current.left_child
         return current
 
     def search(self, node, data, return_node=False):
@@ -127,14 +123,19 @@ if __name__ == '__main__':
     bst.postorder_traversal(root)
 
     # search data in tree
-    if not bst.search(root, data=15):
+    if not bst.search(root, data=16):
         print('\nData not exist in the tree')
     else:
         print('\nData is present in the tree')
 
     # delete
-    bst.delete(root, data=15)
+    bst.delete(root, data=16)
     print('Inorder Traversal after deletion:')
     bst.inorder_traversal(root)
+
+    if not bst.search(root, data=16):
+        print('\nData not exist in the tree')
+    else:
+        print('\nData is present in the tree')
 
 
