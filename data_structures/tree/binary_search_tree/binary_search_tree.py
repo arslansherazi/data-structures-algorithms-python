@@ -1,6 +1,3 @@
-from commons.helpers import display_tree
-
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -117,9 +114,7 @@ if __name__ == '__main__':
     bst.insert(root, 4)
     bst.insert(root, 16)
     bst.insert(root, 17)
-
-    # display tree
-    display_tree(root)
+    bst.insert(root, 15)
 
     # tree traversal
     print('Inorder Traversal:')
@@ -137,5 +132,9 @@ if __name__ == '__main__':
     else:
         print('\nData is present in the tree')
 
-    # update
+    # delete
+    bst.delete(root, data=15)
+    print('Inorder Traversal after deletion:')
+    bst.inorder_traversal(root)
+
 
