@@ -1,5 +1,5 @@
 class MaxHeap:
-    def heapify(self, _heap_array, _heap_array_size, _root_node_index):
+    def max_heapify(self, _heap_array, _heap_array_size, _root_node_index):
         largest_node_index = _root_node_index
         left_child_index = 2 * _root_node_index + 1
         right_child_index = 2 * _root_node_index + 2
@@ -12,7 +12,7 @@ class MaxHeap:
 
         if largest_node_index != _root_node_index:
             _heap_array[_root_node_index], _heap_array[largest_node_index] = _heap_array[largest_node_index], _heap_array[_root_node_index]
-            self.heapify(_heap_array, _heap_array_size, largest_node_index)
+            self.max_heapify(_heap_array, _heap_array_size, largest_node_index)
 
     def insert(self, _heap_array, data):
         size = len(_heap_array)
@@ -21,7 +21,7 @@ class MaxHeap:
         else:
             _heap_array.append(data)
             for root_index in range((size // 2) - 1, -1, -1):
-                self.heapify(_heap_array, size, root_index)
+                self.max_heapify(_heap_array, size, root_index)
 
     def delete(self, _heap_array, data):
         size = len(_heap_array)
@@ -38,7 +38,7 @@ class MaxHeap:
         _heap_array.remove(data)
 
         for i in range((len(_heap_array) // 2) - 1, -1, -1):
-            self.heapify(_heap_array, len(_heap_array), i)
+            self.max_heapify(_heap_array, len(_heap_array), i)
 
 
 if __name__ == '__main__':
@@ -46,13 +46,13 @@ if __name__ == '__main__':
 
     max_heap = MaxHeap()
 
-    max_heap.insert(heap_array, 4)
-    max_heap.insert(heap_array, 5)
-    max_heap.insert(heap_array, 7)
     max_heap.insert(heap_array, 9)
-    max_heap.insert(heap_array, 10)
-    max_heap.insert(heap_array, 8)
-    max_heap.insert(heap_array, 6)
+    max_heap.insert(heap_array, 5)
+    max_heap.insert(heap_array, 2)
+    max_heap.insert(heap_array, 7)
+    max_heap.insert(heap_array, 1)
+    max_heap.insert(heap_array, 4)
+    max_heap.insert(heap_array, 3)
 
     print(f'Heap Array before deletion: {heap_array}')
 
