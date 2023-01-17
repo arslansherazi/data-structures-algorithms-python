@@ -20,18 +20,21 @@ class MaxHeap:
             _heap_array.append(data)
         else:
             _heap_array.append(data)
-            for i in range((size // 2) - 1, -1, -1):
-                self.heapify(_heap_array, size, i)
+            for root_index in range((size // 2) - 1, -1, -1):
+                self.heapify(_heap_array, size, root_index)
 
     def delete(self, _heap_array, data):
         size = len(_heap_array)
+
         i = 0
         for i in range(0, size):
             if data == _heap_array[i]:
                 break
 
+        # replace the last node data with deleted node data
         _heap_array[i], _heap_array[size - 1] = _heap_array[size - 1], _heap_array[i]
 
+        # delete the last node which is replaced by data to be deleted
         _heap_array.remove(data)
 
         for i in range((len(_heap_array) // 2) - 1, -1, -1):
