@@ -1,6 +1,3 @@
-from data_structures.tree.heap.display_heap import show_heap
-
-
 class MaxHeap:
     def heapify(self, _heap_array, _heap_array_size, _root_node_index):
         largest_node_index = _root_node_index
@@ -54,8 +51,8 @@ if __name__ == '__main__':
     max_heap.insert(heap_array, 8)
     max_heap.insert(heap_array, 6)
 
-    show_heap(heap_array)
+    print(f'Heap Array before deletion: {heap_array}')
 
     max_heap.delete(heap_array, 5)
 
-    show_heap(heap_array)
+    print(f'Heap Array after deletion: {heap_array}')
