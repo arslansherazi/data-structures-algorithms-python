@@ -1,5 +1,5 @@
 class MinHeap:
-    def heapify(self, _heap_array, _heap_array_size, _root_node_index):
+    def min_heapify(self, _heap_array, _heap_array_size, _root_node_index):
         smallest_node_index = _root_node_index
         left_child_index = 2 * _root_node_index + 1
         right_child_index = 2 * _root_node_index + 2
@@ -12,7 +12,7 @@ class MinHeap:
 
         if smallest_node_index != _root_node_index:
             _heap_array[_root_node_index], _heap_array[smallest_node_index] = _heap_array[smallest_node_index], _heap_array[_root_node_index]
-            self.heapify(_heap_array, _heap_array_size, smallest_node_index)
+            self.min_heapify(_heap_array, _heap_array_size, smallest_node_index)
 
     def insert(self, _heap_array, data):
         size = len(_heap_array)
@@ -21,7 +21,7 @@ class MinHeap:
         else:
             _heap_array.append(data)
             for root_index in range((size // 2) - 1, -1, -1):
-                self.heapify(_heap_array, size, root_index)
+                self.min_heapify(_heap_array, size, root_index)
 
     def delete(self, _heap_array, data):
         size = len(_heap_array)
@@ -38,7 +38,7 @@ class MinHeap:
         _heap_array.remove(data)
 
         for i in range((len(_heap_array) // 2) - 1, -1, -1):
-            self.heapify(_heap_array, len(_heap_array), i)
+            self.min_heapify(_heap_array, len(_heap_array), i)
 
 
 if __name__ == '__main__':
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     min_heap.insert(heap_array, 7)
     min_heap.insert(heap_array, 1)
     min_heap.insert(heap_array, 4)
-    min_heap.insert(heap_array, 3)
+    min_heap.insert(heap_array, 6)
 
     print(f'Heap Array before deletion: {heap_array}')
 
