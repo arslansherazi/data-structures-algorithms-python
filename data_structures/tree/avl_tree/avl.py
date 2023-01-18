@@ -49,6 +49,9 @@ class AVLTree(BinarySearchTree):
 
         return node
 
+    def delete(self, node, data):
+        pass
+
     def left_rotate(self, z):
         y = z.right_child
         t2 = y.left_child
