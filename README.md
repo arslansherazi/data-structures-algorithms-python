@@ -7,7 +7,13 @@
 - Binary Tree
 - Binary Search Tree (BST)
 - Heap
-- AVL tree
+### AVL tree
+~~~
+Balancing Factor = (Height of left sub-tree - Height of right sub-tree)
+~~~
+~~~
+Balancing factor should be 1 otherwise balance the tree
+~~~
 ### Graph
 ### Hashing
 ### Recursion
