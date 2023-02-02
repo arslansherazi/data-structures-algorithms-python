@@ -11,7 +11,9 @@ class MaxHeap:
             largest_node_index = right_child_index
 
         if largest_node_index != _root_node_index:
-            _heap_array[_root_node_index], _heap_array[largest_node_index] = _heap_array[largest_node_index], _heap_array[_root_node_index]
+            _heap_array[_root_node_index], _heap_array[largest_node_index] = (
+                _heap_array[largest_node_index], _heap_array[_root_node_index]
+            )
             self.max_heapify(_heap_array, _heap_array_size, largest_node_index)
 
     def insert(self, _heap_array, data):
