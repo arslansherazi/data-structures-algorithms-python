@@ -1,6 +1,3 @@
-"""
-Max-Heap is used as priority queue
-"""
 from data_structures.tree.heap.min_heap import MinHeap
 
 
