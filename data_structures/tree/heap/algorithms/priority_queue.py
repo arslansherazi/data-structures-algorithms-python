@@ -38,4 +38,3 @@ if __name__ == '__main__':
     for _ in range(len(priority_map.keys())):
         priority = priority_queue.get_top_priority(priority_array)
         print(priority_map.get(priority))
-
